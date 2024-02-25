@@ -18,6 +18,7 @@ class ProductsOverviewPage extends StatelessWidget {
           'My store',
           style: TextStyle(color: Colors.white),
         ),
+        elevation: 15,
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         actions: [

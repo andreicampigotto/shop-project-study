@@ -23,7 +23,7 @@ class ProductItem extends StatelessWidget {
                 product.toggleFavorite();
               },
               icon: Icon(
-                  product.favorite ? Icons.favorite : Icons.favorite_outline,
+                  product.isFavorite ? Icons.favorite : Icons.favorite_outline,
                   color: Colors.deepOrange),
             ),
           ),
