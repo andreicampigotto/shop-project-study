@@ -3,7 +3,7 @@ import 'package:shop/views/items/components/product_grid.dart';
 // import 'package:shop/data/dummy_data.dart';
 
 class ProductsOverviewPage extends StatelessWidget {
-  ProductsOverviewPage({super.key});
+  const ProductsOverviewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ProductsOverviewPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
       ),
-      body: PrductGrid(),
+      body: const PrductGrid(),
     );
   }
 }

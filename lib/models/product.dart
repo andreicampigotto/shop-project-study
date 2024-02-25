@@ -1,4 +1,6 @@
-class Product {
+import 'package:flutter/material.dart';
+
+class Product with ChangeNotifier {
   String? id, description, imageUrl;
   double price;
   bool favorite;
@@ -15,12 +17,6 @@ class Product {
 
   void toggleFavorite() {
     favorite = !favorite;
+    notifyListeners();
   }
-
-  // Product.fromJson(Map<String, dynamic> json) {
-  //   id = json['full_name'];
-  //   user = json['owner']['login'];
-  //   avatar = json['owner']['avatar_url'];
-  //   description = json['description'];
-  // }
 }

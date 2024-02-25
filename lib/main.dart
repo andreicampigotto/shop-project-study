@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Lato',
           useMaterial3: true,
         ),
-        home: ProductsOverviewPage(),
-        routes: {Routes.PRODUCT_DETAIL: (ctx) => ProductDetail()},
+        home: const ProductsOverviewPage(),
+        routes: {Routes.PRODUCT_DETAIL: (ctx) => const ProductDetail()},
         debugShowCheckedModeBanner: false,
       ),
     );
