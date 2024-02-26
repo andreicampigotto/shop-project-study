@@ -11,9 +11,8 @@ class ProductDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          product.title,
+          product.name,
         ),
-        elevation: 15,
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
       ),

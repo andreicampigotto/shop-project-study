@@ -27,7 +27,7 @@ class ProductItem extends StatelessWidget {
                   color: Colors.deepOrange),
             ),
           ),
-          title: Text(product.title),
+          title: Text(product.name),
           trailing: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.shopping_cart_outlined,

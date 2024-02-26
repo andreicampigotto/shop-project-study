@@ -4,11 +4,11 @@ class Product with ChangeNotifier {
   String? id, description, imageUrl;
   double price;
   bool isFavorite;
-  String title;
+  String name;
 
   Product({
     this.id,
-    required this.title,
+    required this.name,
     this.imageUrl,
     this.description,
     this.price = 0.00,
