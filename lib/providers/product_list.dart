@@ -16,10 +16,12 @@ class ProductList with ChangeNotifier {
 
   void toggleShowFavoriteOnly() {
     _showFavoriteOnly = true;
+    notifyListeners();
   }
 
   void toggleShowAll() {
     _showFavoriteOnly = false;
+    notifyListeners();
   }
 
   void addProduct(Product product) {

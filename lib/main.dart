@@ -4,6 +4,7 @@ import 'package:shop/utils/routes.dart';
 import 'package:shop/views/items/product_detail.dart';
 import 'package:shop/views/products_overview_page.dart';
 import 'package:provider/provider.dart';
+// import 'package:system_theme/system_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -19,9 +21,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Shop',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple, secondary: Colors.amber),
-          fontFamily: 'Lato',
+          brightness: Brightness.light,
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
           useMaterial3: true,
         ),
         home: const ProductsOverviewPage(),

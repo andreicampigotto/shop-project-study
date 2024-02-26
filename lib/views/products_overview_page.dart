@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/providers/product_list.dart';
 import 'package:shop/views/items/components/product_grid.dart';
 // import 'package:shop/data/dummy_data.dart';
 
@@ -12,18 +14,18 @@ class ProductsOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProductList>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'My store',
-          style: TextStyle(color: Colors.white),
         ),
         elevation: 15,
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         actions: [
           PopupMenuButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
+            icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
               const PopupMenuItem(
                 value: FilterOptions.favorite,
@@ -34,7 +36,14 @@ class ProductsOverviewPage extends StatelessWidget {
                 child: Text('All'),
               ),
             ],
-          ),
+            onSelected: (FilterOptions selected) {
+              if (selected == FilterOptions.favorite) {
+                provider.toggleShowFavoriteOnly();
+              } else {
+                provider.toggleShowAll();
+              }
+            },
+          )
         ],
       ),
       body: const PrductGrid(),
