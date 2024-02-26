@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shop/providers/product_list.dart';
 import 'package:shop/views/items/components/product_grid.dart';
 // import 'package:shop/data/dummy_data.dart';
 
@@ -9,12 +7,19 @@ enum FilterOptions {
   all,
 }
 
-class ProductsOverviewPage extends StatelessWidget {
+class ProductsOverviewPage extends StatefulWidget {
   const ProductsOverviewPage({super.key});
 
   @override
+  State<ProductsOverviewPage> createState() => _ProductsOverviewPageState();
+}
+
+class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
+  bool _showFavoriteOnly = false;
+
+  @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProductList>(context);
+    // final provider = Provider.of<ProductList>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -37,16 +42,25 @@ class ProductsOverviewPage extends StatelessWidget {
               ),
             ],
             onSelected: (FilterOptions selected) {
-              if (selected == FilterOptions.favorite) {
-                provider.toggleShowFavoriteOnly();
-              } else {
-                provider.toggleShowAll();
-              }
+              setState(
+                () {
+                  if (selected == FilterOptions.favorite) {
+                    _showFavoriteOnly = true;
+                  } else {
+                    _showFavoriteOnly = false;
+                  }
+                },
+              );
+              //   if (selected == FilterOptions.favorite) {
+              //     // provider.toggleShowFavoriteOnly();
+              //   } else {
+              //     // provider.toggleShowAll();
+              //   }
             },
           )
         ],
       ),
-      body: const PrductGrid(),
+      body: ProductGrid(_showFavoriteOnly),
     );
   }
 }
