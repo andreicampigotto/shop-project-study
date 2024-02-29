@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/cart.dart';
 import 'package:shop/views/items/components/product_grid.dart';
 // import 'package:shop/data/dummy_data.dart';
 
@@ -29,6 +31,19 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         actions: [
+          Consumer<Cart>(
+            builder: (context, cart, child) => Badge(
+              padding: const EdgeInsets.all(2),
+              textColor: Colors.white,
+              backgroundColor: Colors.red,
+              child: IconButton(
+                icon: const Icon(Icons.shopping_cart_checkout),
+                onPressed: () {
+                  cart.itemsCount;
+                },
+              ),
+            ),
+          ),
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
@@ -57,7 +72,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               //     // provider.toggleShowAll();
               //   }
             },
-          )
+          ),
         ],
       ),
       body: ProductGrid(_showFavoriteOnly),

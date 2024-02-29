@@ -47,8 +47,16 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
-  bool isCartEmpty() {
-    return _items.isEmpty;
+  // bool isCartEmpty() {
+  //   return _items.isEmpty;
+  // }
+
+  double get totalAmout {
+    double total = 0;
+    _items.forEach((key, value) {
+      total += value.price * value.quantity;
+    });
+    return total;
   }
 
   void removeItem(String productId) {
