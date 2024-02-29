@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/cart.dart';
+import 'package:shop/utils/routes.dart';
 import 'package:shop/views/items/components/product_grid.dart';
 // import 'package:shop/data/dummy_data.dart';
 
@@ -9,14 +10,14 @@ enum FilterOptions {
   all,
 }
 
-class ProductsOverviewPage extends StatefulWidget {
-  const ProductsOverviewPage({super.key});
+class ProductsPage extends StatefulWidget {
+  const ProductsPage({super.key});
 
   @override
-  State<ProductsOverviewPage> createState() => _ProductsOverviewPageState();
+  State<ProductsPage> createState() => _ProductsPageState();
 }
 
-class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
+class _ProductsPageState extends State<ProductsPage> {
   bool _showFavoriteOnly = false;
 
   @override
@@ -32,16 +33,18 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
         backgroundColor: Colors.deepPurple,
         actions: [
           Consumer<Cart>(
+            child: IconButton(
+              icon: const Icon(Icons.shopping_cart_checkout_rounded),
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.CART);
+              },
+            ),
             builder: (context, cart, child) => Badge(
               padding: const EdgeInsets.all(2),
+              largeSize: 20,
               textColor: Colors.white,
-              backgroundColor: Colors.red,
-              child: IconButton(
-                icon: const Icon(Icons.shopping_cart_checkout),
-                onPressed: () {
-                  cart.itemsCount;
-                },
-              ),
+              backgroundColor: Colors.green,
+              child: child,
             ),
           ),
           PopupMenuButton(
