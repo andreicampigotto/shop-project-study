@@ -14,7 +14,7 @@ class ProductDetail extends StatelessWidget {
           product.name,
         ),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(141, 142, 89, 234),
       ),
     );
   }

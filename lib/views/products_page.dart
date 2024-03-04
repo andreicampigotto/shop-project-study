@@ -28,23 +28,23 @@ class _ProductsPageState extends State<ProductsPage> {
         title: const Text(
           'My store',
         ),
-        elevation: 15,
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(141, 142, 89, 234),
         actions: [
           Consumer<Cart>(
             child: IconButton(
-              icon: const Icon(Icons.shopping_cart_checkout_rounded),
+              icon: const Icon(Icons.shopping_cart_checkout_rounded, size: 27),
               onPressed: () {
                 Navigator.of(context).pushNamed(Routes.CART);
+                setState(() {});
               },
             ),
             builder: (context, cart, child) => Badge(
               padding: const EdgeInsets.all(2),
-              largeSize: 20,
-              textColor: Colors.white,
-              backgroundColor: Colors.green,
+              backgroundColor: const Color.fromARGB(255, 228, 82, 29),
+              textStyle: const TextStyle(fontSize: 12, color: Colors.white),
               child: child,
+              // label: child,
             ),
           ),
           PopupMenuButton(
@@ -78,7 +78,9 @@ class _ProductsPageState extends State<ProductsPage> {
           ),
         ],
       ),
-      body: ProductGrid(_showFavoriteOnly),
+      body: ProductGrid(
+        _showFavoriteOnly,
+      ),
     );
   }
 }

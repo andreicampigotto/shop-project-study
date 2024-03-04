@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product.dart';
-import 'package:shop/providers/product_list.dart';
+import 'package:shop/providers/product_item_list.dart';
 import 'package:shop/views/items/components/product_item.dart';
 
 class ProductGrid extends StatelessWidget {
@@ -14,16 +14,17 @@ class ProductGrid extends StatelessWidget {
     final List<Product> loadedProducts =
         showFavoriteOnly ? provider.favoriteProducts : provider.products;
     return GridView.builder(
-        padding: const EdgeInsets.all(7),
-        itemCount: loadedProducts.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 7,
-            mainAxisSpacing: 7),
-        itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
-              value: loadedProducts[i],
-              child: const ProductItem(),
-            ));
+      padding: const EdgeInsets.all(7),
+      itemCount: loadedProducts.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 7,
+          mainAxisSpacing: 7),
+      itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+        value: loadedProducts[i],
+        child: const ProductItem(),
+      ),
+    );
   }
 }

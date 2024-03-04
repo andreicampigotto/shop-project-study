@@ -1,10 +1,10 @@
-class CartItem {
+class CartItemList {
   String? id, productId, description;
   double price;
   int quantity;
   String name;
 
-  CartItem({
+  CartItemList({
     required this.id,
     required this.productId,
     this.description,
