@@ -1,9 +1,9 @@
-import 'package:shop/views/items/components/cart_item.dart';
+import '../providers/cart_list_item.dart';
 
 class Order {
   String id;
   double total;
-  List<CartItem> products;
+  List<CartListItem> products;
   DateTime date;
 
   Order({
