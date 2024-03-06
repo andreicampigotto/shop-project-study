@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/models/cart.dart';
-import 'package:shop/providers/product_item_list.dart';
+import 'package:shop/providers/product_list.dart';
 import 'package:shop/utils/routes.dart';
 import 'package:shop/views/items/cart_page.dart';
 import 'package:shop/views/items/product_detail.dart';
@@ -31,9 +31,13 @@ class MyApp extends StatelessWidget {
         title: 'Shop',
         theme: ThemeData(
           brightness: Brightness.light,
+          colorScheme: const ColorScheme.light()
+              .copyWith(primary: const Color.fromARGB(255, 159, 125, 219)),
           useMaterial3: true,
         ),
         darkTheme: ThemeData(
+          colorScheme: const ColorScheme.dark()
+              .copyWith(primary: const Color.fromARGB(201, 156, 114, 230)),
           brightness: Brightness.dark,
           useMaterial3: true,
         ),

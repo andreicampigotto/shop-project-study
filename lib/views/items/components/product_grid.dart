@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product.dart';
-import 'package:shop/providers/product_item_list.dart';
+import 'package:shop/providers/product_list.dart';
 import 'package:shop/views/items/components/product_item.dart';
 
+// ignore: must_be_immutable
 class ProductGrid extends StatelessWidget {
   bool showFavoriteOnly;
   ProductGrid(this.showFavoriteOnly, {super.key});

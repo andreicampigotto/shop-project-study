@@ -42,15 +42,16 @@ class CartPage extends StatelessWidget {
                     ),
                     Text(
                       "\$${cart.totalPrice}",
-                      style: TextStyle(
-                          fontSize: 17, color: Theme.of(context).primaryColor),
+                      style: const TextStyle(fontSize: 17),
                     ),
                     const Spacer(),
                     ElevatedButton(
                       onPressed: () {},
                       child: const Text(
                         'Checkout',
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ],

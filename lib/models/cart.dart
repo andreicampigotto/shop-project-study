@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:shop/models/product.dart';
-import 'package:shop/providers/cart_item_list.dart';
+import 'package:shop/providers/cart_list_item.dart';
 
 class Cart with ChangeNotifier {
-  final Map<String, CartItemList> _items = {};
+  final Map<String, CartListItem> _items = {};
 
-  Map<String, CartItemList> get items {
+  Map<String, CartListItem> get items {
     return {..._items};
   }
 
@@ -15,7 +15,7 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
-  // void addItem(String id, CartItemList item) {
+  // void addItem(String id, CartListItem item) {
   //   _items[id] = item;
   //   notifyListeners();
   // }
@@ -24,7 +24,7 @@ class Cart with ChangeNotifier {
     if (_items.containsKey(product.id)) {
       _items.update(
         product.id!,
-        (existingItem) => CartItemList(
+        (existingItem) => CartListItem(
           id: existingItem.id,
           productId: existingItem.productId,
           name: existingItem.name,
@@ -35,7 +35,7 @@ class Cart with ChangeNotifier {
     } else {
       _items.putIfAbsent(
         product.id!,
-        () => CartItemList(
+        () => CartListItem(
           id: Random().nextDouble().toString(),
           productId: product.id,
           name: product.name,
