@@ -34,13 +34,24 @@ class CartItem extends StatelessWidget {
       child: Card(
         margin: const EdgeInsets.symmetric(
           vertical: 4,
-          horizontal: 12,
+          horizontal: 7,
         ),
+        elevation: 7,
         child: ListTile(
+          leading: SizedBox.square(
+            dimension: 92,
+            child: Image.network(
+              cartItemList.imageUrl!,
+              fit: BoxFit.cover,
+            ),
+          ),
           title: Text(cartItemList.name),
           subtitle:
               Text('Total\$: ${cartItemList.price * cartItemList.quantity}'),
-          trailing: Text('${cartItemList.quantity}X ${cartItemList.price}'),
+          trailing: Text(
+            '${cartItemList.quantity}X ${cartItemList.price}',
+            style: const TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
