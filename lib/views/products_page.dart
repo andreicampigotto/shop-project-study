@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/utils/routes.dart';
-import 'package:shop/views/items/components/product_grid.dart';
+import 'package:shop/views/components/product_grid.dart';
 // import 'package:shop/data/dummy_data.dart';
 
 enum FilterOptions {

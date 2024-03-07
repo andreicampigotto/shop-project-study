@@ -3,8 +3,9 @@ import 'package:shop/models/cart.dart';
 import 'package:shop/providers/order_list.dart';
 import 'package:shop/providers/product_list.dart';
 import 'package:shop/utils/routes.dart';
-import 'package:shop/views/items/cart_page.dart';
-import 'package:shop/views/items/product_detail.dart';
+import 'package:shop/views/cart_page.dart';
+import 'package:shop/views/orders_page.dart';
+import 'package:shop/views/product_detail_page.dart';
 import 'package:shop/views/products_page.dart';
 import 'package:provider/provider.dart';
 // import 'package:system_theme/system_theme.dart';
@@ -45,10 +46,12 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           useMaterial3: true,
         ),
-        home: const ProductsPage(),
+        // home: const ProductsPage(),
         routes: {
-          Routes.PRODUCT_DETAIL: (ctx) => const ProductDetail(),
+          Routes.HOME: (ctx) => const ProductsPage(),
+          Routes.PRODUCT_DETAIL: (ctx) => const ProductDetailPage(),
           Routes.CART: (ctx) => const CartPage(),
+          Routes.ORDERS: (ctx) => const OrdersPage(),
         },
         debugShowCheckedModeBanner: false,
       ),
