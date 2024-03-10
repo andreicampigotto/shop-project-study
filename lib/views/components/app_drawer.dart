@@ -12,6 +12,8 @@ class AppDrawer extends StatelessWidget {
         children: [
           AppBar(
             title: const Text('Welcome'),
+            automaticallyImplyLeading: false,
+            backgroundColor: const Color.fromARGB(141, 142, 89, 234),
           ),
           const Divider(),
           ListTile(
@@ -33,6 +35,7 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
+          const Divider(),
         ],
       ),
     );

@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$${cart.totalPrice}",
+                      "\$${cart.totalPrice.toStringAsFixed(2)}",
                       style: const TextStyle(fontSize: 17),
                     ),
                     const Spacer(),
