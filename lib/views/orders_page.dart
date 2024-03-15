@@ -13,7 +13,7 @@ class OrdersPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Orders'),
-        backgroundColor: const Color.fromARGB(141, 142, 89, 234),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       drawer: const AppDrawer(),
       body: ListView.builder(

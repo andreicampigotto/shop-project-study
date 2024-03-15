@@ -6,6 +6,8 @@ import 'package:shop/utils/routes.dart';
 import 'package:shop/views/cart_page.dart';
 import 'package:shop/views/orders_page.dart';
 import 'package:shop/views/product_detail_page.dart';
+import 'package:shop/views/product_form_page.dart';
+import 'package:shop/views/product_manage.dart';
 import 'package:shop/views/products_page.dart';
 import 'package:provider/provider.dart';
 // import 'package:system_theme/system_theme.dart';
@@ -36,14 +38,14 @@ class MyApp extends StatelessWidget {
         title: 'Shop',
         theme: ThemeData(
           brightness: Brightness.light,
-          colorScheme: const ColorScheme.light()
-              .copyWith(primary: const Color.fromARGB(255, 159, 125, 219)),
+          colorScheme: const ColorScheme.light(),
+          //.copyWith(primary: const Color.fromARGB(255, 159, 125, 219)),
+          primaryColor: const Color.fromARGB(255, 151, 90, 255),
           useMaterial3: true,
         ),
         darkTheme: ThemeData(
-          colorScheme: const ColorScheme.dark()
-              .copyWith(primary: const Color.fromARGB(255, 190, 153, 255)),
-          brightness: Brightness.dark,
+          colorScheme: const ColorScheme.dark(),
+          primaryColor: const Color.fromARGB(255, 159, 125, 219),
           useMaterial3: true,
         ),
         // home: const ProductsPage(),
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
           Routes.PRODUCT_DETAIL: (ctx) => const ProductDetailPage(),
           Routes.CART: (ctx) => const CartPage(),
           Routes.ORDERS: (ctx) => const OrdersPage(),
+          Routes.PRODUCT_MANAGE: (ctx) => const ProductManage(),
+          Routes.PRODUCT_FORM: (ctx) => const ProductFormPage(),
         },
         debugShowCheckedModeBanner: false,
       ),

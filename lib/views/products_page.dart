@@ -30,7 +30,7 @@ class _ProductsPageState extends State<ProductsPage> {
           'My store',
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(141, 142, 89, 234),
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           Consumer<Cart>(
             child: IconButton(
@@ -82,7 +82,7 @@ class _ProductsPageState extends State<ProductsPage> {
       body: ProductGrid(
         _showFavoriteOnly,
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
     );
   }
 }

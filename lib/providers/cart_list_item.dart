@@ -1,8 +1,8 @@
 class CartListItem {
-  String? id, productId, imageUrl;
+  String? imageUrl;
   double price;
   int quantity;
-  String name;
+  String id, name, productId;
 
   CartListItem({
     required this.id,

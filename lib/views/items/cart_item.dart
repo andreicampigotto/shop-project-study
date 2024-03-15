@@ -25,11 +25,33 @@ class CartItem extends StatelessWidget {
           color: Colors.white,
         ),
       ),
+      confirmDismiss: (_) {
+        return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Are you sure?', style: TextStyle(fontSize: 24)),
+            content: const Text(
+              'If you click yes, you will remove the item!',
+              style: TextStyle(fontSize: 16),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text('Yes'),
+              ),
+            ],
+          ),
+        );
+      },
       onDismissed: (_) {
         Provider.of<Cart>(
           context,
           listen: false,
-        ).removeItem(cartItemList.productId!);
+        ).removeItem(cartItemList.productId);
       },
       child: Card(
         margin: const EdgeInsets.symmetric(
@@ -38,8 +60,15 @@ class CartItem extends StatelessWidget {
         ),
         elevation: 7,
         child: ListTile(
-          leading: SizedBox.square(
-            dimension: 92,
+          leading: Container(
+            width: 82,
+            height: 82,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black45, width: 2),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5.0),
+              ),
+            ),
             child: Image.network(
               cartItemList.imageUrl!,
               fit: BoxFit.cover,

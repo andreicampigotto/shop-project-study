@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product.dart';
 import 'package:shop/providers/product_list.dart';
-import 'package:shop/views/items/product_item.dart';
+import 'package:shop/views/items/product_grid_item.dart';
 
 // ignore: must_be_immutable
 class ProductGrid extends StatelessWidget {
@@ -24,7 +24,7 @@ class ProductGrid extends StatelessWidget {
           mainAxisSpacing: 7),
       itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
         value: loadedProducts[i],
-        child: const ProductItem(),
+        child: const ProductGridItem(),
       ),
     );
   }

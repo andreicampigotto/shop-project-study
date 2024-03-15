@@ -15,7 +15,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cart"),
-        backgroundColor: const Color.fromARGB(141, 142, 89, 234),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),

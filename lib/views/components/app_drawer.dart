@@ -13,9 +13,8 @@ class AppDrawer extends StatelessWidget {
           AppBar(
             title: const Text('Welcome'),
             automaticallyImplyLeading: false,
-            backgroundColor: const Color.fromARGB(141, 142, 89, 234),
+            backgroundColor: Theme.of(context).primaryColor,
           ),
-          const Divider(),
           ListTile(
             leading: const Icon(Icons.shop),
             title: const Text('Store'),
@@ -32,6 +31,16 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
                 Routes.ORDERS,
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text('Product manager'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(
+                Routes.PRODUCT_MANAGE,
               );
             },
           ),

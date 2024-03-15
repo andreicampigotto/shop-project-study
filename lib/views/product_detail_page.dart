@@ -14,7 +14,7 @@ class ProductDetailPage extends StatelessWidget {
           product.name,
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(141, 142, 89, 234),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SingleChildScrollView(
         child: Column(

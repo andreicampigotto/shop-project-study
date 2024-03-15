@@ -37,7 +37,7 @@ class Cart with ChangeNotifier {
         product.id!,
         () => CartListItem(
           id: Random().nextDouble().toString(),
-          productId: product.id,
+          productId: product.id!,
           name: product.name,
           price: product.price,
           quantity: 1,
@@ -62,6 +62,28 @@ class Cart with ChangeNotifier {
 
   void removeItem(String productId) {
     _items.remove(productId);
+    notifyListeners();
+  }
+
+  void removeSingleItem(String productId) {
+    if (!_items.containsKey(productId)) {
+      return;
+    }
+
+    if (_items[productId]?.quantity == 1) {
+      _items.remove(productId);
+    } else {
+      _items.update(
+        productId,
+        (existingItem) => CartListItem(
+            id: existingItem.id,
+            productId: existingItem.productId,
+            name: existingItem.name,
+            price: existingItem.price,
+            quantity: existingItem.quantity - 1,
+            imageUrl: existingItem.imageUrl),
+      );
+    }
     notifyListeners();
   }
 
