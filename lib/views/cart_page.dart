@@ -43,25 +43,11 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$${cart.totalPrice.toStringAsFixed(2)}",
+                      "\$${cart.totalAmount.toStringAsFixed(2)}",
                       style: const TextStyle(fontSize: 17),
                     ),
                     const Spacer(),
-                    OutlinedButton(
-                      onPressed: () {
-                        Provider.of<OrderList>(
-                          context,
-                          listen: false,
-                        ).addOrder(cart);
-                        cart.clear();
-                      },
-                      child: const Text(
-                        'Checkout',
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
+                    CheckoutButton(cart: cart),
                   ],
                 ),
               ),
@@ -70,5 +56,46 @@ class CartPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CheckoutButton extends StatefulWidget {
+  const CheckoutButton({
+    super.key,
+    required this.cart,
+  });
+
+  final Cart cart;
+
+  @override
+  State<CheckoutButton> createState() => _CheckoutButtonState();
+}
+
+class _CheckoutButtonState extends State<CheckoutButton> {
+  bool _isLoading = false;
+  @override
+  Widget build(BuildContext context) {
+    return _isLoading
+        ? const CircularProgressIndicator()
+        : OutlinedButton(
+            onPressed: widget.cart.itemsCount == 0
+                ? null
+                : () async {
+                    setState(() => _isLoading = true);
+                    await Provider.of<OrderList>(
+                      context,
+                      listen: false,
+                    ).addOrder(widget.cart);
+
+                    widget.cart.clear();
+                    setState(() => _isLoading = false);
+                  },
+            child: const Text(
+              'Checkout',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+          );
   }
 }

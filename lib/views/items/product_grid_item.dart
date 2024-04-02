@@ -23,7 +23,7 @@ class ProductGridItem extends StatelessWidget {
               },
               icon: Icon(
                   product.isFavorite ? Icons.favorite : Icons.favorite_outline,
-                  color: Colors.deepOrange),
+                  color: const Color.fromARGB(255, 255, 102, 56)),
             ),
           ),
           title: Text(product.name),
@@ -51,7 +51,10 @@ class ProductGridItem extends StatelessWidget {
               );
               cart.addItem(product);
             },
-            icon: const Icon(Icons.shopping_cart, color: Colors.lightBlue),
+            icon: const Icon(
+              Icons.shopping_cart,
+              color: Colors.amberAccent,
+            ),
           ),
         ),
         child: GestureDetector(

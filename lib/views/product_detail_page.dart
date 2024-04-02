@@ -19,7 +19,10 @@ class ProductDetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.white54,
+              ),
               height: 300,
               width: double.infinity,
               child: Image.network(
@@ -30,8 +33,10 @@ class ProductDetailPage extends StatelessWidget {
             Card(
               borderOnForeground: true,
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.zero,
-              ),
+                  borderRadius: BorderRadius.zero,
+                  side: BorderSide(
+                    color: Colors.grey,
+                  )),
               elevation: 0,
               margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
               color: const Color.fromARGB(255, 255, 255, 82),

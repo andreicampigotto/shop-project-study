@@ -2,7 +2,7 @@ import '../providers/cart_list_item.dart';
 
 class Order {
   String id;
-  double total;
+  final double total;
   List<CartListItem> products;
   DateTime date;
 

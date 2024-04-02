@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/cart.dart';
+import 'package:shop/providers/product_list.dart';
 import 'package:shop/utils/routes.dart';
 import 'package:shop/views/components/app_drawer.dart';
 import 'package:shop/views/components/product_grid.dart';
@@ -20,6 +21,20 @@ class ProductsPage extends StatefulWidget {
 
 class _ProductsPageState extends State<ProductsPage> {
   bool _showFavoriteOnly = false;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ProductList>(
+      context,
+      listen: false,
+    ).loadProducts().then(
+          (value) => setState(() {
+            _isLoading = false;
+          }),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +49,22 @@ class _ProductsPageState extends State<ProductsPage> {
         actions: [
           Consumer<Cart>(
             child: IconButton(
-              icon: const Icon(Icons.shopping_cart_checkout_rounded, size: 27),
+              icon: const Icon(
+                Icons.shopping_basket_sharp,
+                size: 28,
+              ),
               onPressed: () {
                 Navigator.of(context).pushNamed(Routes.CART);
                 setState(() {});
               },
             ),
-            builder: (context, cart, child) => Badge(
+            builder: (context, cart, child) => Badge.count(
               padding: const EdgeInsets.all(2),
-              backgroundColor: const Color.fromARGB(255, 228, 82, 29),
-              textStyle: const TextStyle(fontSize: 12, color: Colors.white),
+              largeSize: 20,
+              textStyle:
+                  TextStyle(fontSize: 12, color: Theme.of(context).hintColor),
+              count: cart.itemsCount,
               child: child,
-              // label: child,
             ),
           ),
           PopupMenuButton(
@@ -79,9 +98,14 @@ class _ProductsPageState extends State<ProductsPage> {
           ),
         ],
       ),
-      body: ProductGrid(
-        _showFavoriteOnly,
-      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Container(
+              margin: const EdgeInsets.only(top: 8),
+              child: ProductGrid(
+                _showFavoriteOnly,
+              ),
+            ),
       drawer: const AppDrawer(),
     );
   }

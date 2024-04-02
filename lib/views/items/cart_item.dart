@@ -64,9 +64,10 @@ class CartItem extends StatelessWidget {
             width: 82,
             height: 82,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black45, width: 2),
+              color: Colors.white,
+              border: Border.all(color: Colors.grey, width: 2),
               borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
+                Radius.circular(9.0),
               ),
             ),
             child: Image.network(
@@ -75,8 +76,8 @@ class CartItem extends StatelessWidget {
             ),
           ),
           title: Text(cartItemList.name),
-          subtitle:
-              Text('Total\$: ${cartItemList.price * cartItemList.quantity}'),
+          subtitle: Text(
+              'Total\$: ${(cartItemList.price * cartItemList.quantity).toStringAsFixed(2)}'),
           trailing: Text(
             '${cartItemList.quantity}X ${cartItemList.price}',
             style: const TextStyle(fontSize: 15),

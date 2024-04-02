@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/exceptions/http_exception.dart';
 import 'package:shop/models/product.dart';
 import 'package:shop/providers/product_list.dart';
-
 import '../../utils/routes.dart';
 
 class ProductItem extends StatelessWidget {
@@ -11,14 +11,16 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final message = ScaffoldMessenger.of(context);
     return ListTile(
       leading: Container(
         height: 82,
         width: 82,
         decoration: BoxDecoration(
+          color: Colors.white,
           border: Border.all(color: Colors.grey, width: 2),
           borderRadius: const BorderRadius.all(
-            Radius.circular(5.0),
+            Radius.circular(9),
           ),
         ),
         child: Image.network(
@@ -67,12 +69,22 @@ class ProductItem extends StatelessWidget {
                     ],
                   ),
                 ).then(
-                  (value) {
+                  (value) async {
                     if (value ?? false) {
-                      Provider.of<ProductList>(
-                        context,
-                        listen: false,
-                      ).deleteProduct(product);
+                      try {
+                        await Provider.of<ProductList>(
+                          context,
+                          listen: false,
+                        ).deleteProduct(product);
+                      } on HttpException catch (error) {
+                        message.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              error.toString(),
+                            ),
+                          ),
+                        );
+                      }
                     }
                   },
                 );

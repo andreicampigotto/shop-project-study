@@ -52,7 +52,7 @@ class Cart with ChangeNotifier {
   //   return _items.isEmpty;
   // }
 
-  double get totalPrice {
+  double get totalAmount {
     double total = 0;
     _items.forEach((key, value) {
       total += value.price * value.quantity;
