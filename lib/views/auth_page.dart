@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shop/views/components/auth_form.dart';
@@ -30,9 +31,10 @@ class AuthPage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.16,
               ),
-              const SizedBox(
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
-                child: AuthForm(),
+                child: const AuthForm(),
               ),
             ],
           ),

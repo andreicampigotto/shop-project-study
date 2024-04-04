@@ -58,7 +58,7 @@ class _AuthFormState extends State<AuthForm> {
       child: Container(
         margin: const EdgeInsets.only(top: 16),
         padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-        height: deviceSize.height * 0.4,
+        height: deviceSize.height * 0.45,
         width: deviceSize.width * 0.88,
         child: Form(
             key: _formKey,
@@ -103,7 +103,8 @@ class _AuthFormState extends State<AuthForm> {
                         ? null
                         : (_password) {
                             final password = _password ?? '';
-                            if (password != _passwordController.text) {
+                            if (password != _passwordController.text ||
+                                password.isEmpty) {
                               return "Passwords don't match";
                             }
                             return null;
