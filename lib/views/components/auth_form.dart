@@ -1,4 +1,9 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/exceptions/auth_exception.dart';
+import 'package:shop/models/auth.dart';
 
 enum AuthMode { singUp, login }
 
@@ -21,12 +26,12 @@ class _AuthFormState extends State<AuthForm> {
     'password': '',
   };
 
-  bool _isLogin() => _authMode == AuthMode.login;
+  bool _isSingIn() => _authMode == AuthMode.login;
   bool _isSingUp() => _authMode == AuthMode.singUp;
 
   void _switchAuthMode() {
     setState(() {
-      if (_isLogin()) {
+      if (_isSingIn()) {
         _authMode = AuthMode.singUp;
       } else {
         _authMode = AuthMode.login;
@@ -34,7 +39,23 @@ class _AuthFormState extends State<AuthForm> {
     });
   }
 
-  void _submit() {
+  void _showErrorDialog(String msg) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('An error has occurred'),
+        content: Text(msg),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Close'),
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<void> _submit() async {
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) {
       return;
@@ -42,9 +63,25 @@ class _AuthFormState extends State<AuthForm> {
     setState(() => _isLoading = true);
 
     _formKey.currentState?.save();
+    Auth auth = Provider.of(context, listen: false);
 
-    if (_isLogin()) {
-    } else {}
+    try {
+      if (_isSingIn()) {
+        await auth.login(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      } else {
+        await auth.singUp(
+          _authData['email']!,
+          _authData['password']!,
+        );
+      }
+    } on AuthException catch (error) {
+      _showErrorDialog(error.toString());
+    } catch (error) {
+      _showErrorDialog('An unexpected error occurred');
+    }
 
     setState(() => _isLoading = false);
   }
@@ -99,7 +136,7 @@ class _AuthFormState extends State<AuthForm> {
                         const InputDecoration(labelText: 'Confirm password'),
                     keyboardType: TextInputType.emailAddress,
                     obscureText: true,
-                    validator: _isLogin()
+                    validator: _isSingIn()
                         ? null
                         : (_password) {
                             final password = _password ?? '';
@@ -126,7 +163,7 @@ class _AuthFormState extends State<AuthForm> {
                           horizontal: 32, vertical: 8),
                     ),
                     child: Text(
-                      _authMode == AuthMode.login ? 'Login' : 'Sing-up',
+                      _authMode == AuthMode.login ? 'Sing-In' : 'Sing-up',
                       style: const TextStyle(fontSize: 24),
                     ),
                   ),
@@ -134,9 +171,12 @@ class _AuthFormState extends State<AuthForm> {
                 TextButton(
                   onPressed: _switchAuthMode,
                   child: Text(
-                    _isLogin() ? 'Sing up' : 'Sing in',
-                    style: const TextStyle(fontSize: 16),
+                    _isSingIn() ? 'Sing up' : 'Sing in',
+                    style: const TextStyle(fontSize: 24),
                   ),
+                ),
+                const SizedBox(
+                  height: 8,
                 )
               ],
             )),

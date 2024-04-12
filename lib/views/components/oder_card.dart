@@ -55,7 +55,7 @@ class _OrderCardState extends State<OrderCard> {
                           '${product.quantity}X  \$ ${product.price}',
                           style: const TextStyle(
                             fontSize: 17,
-                            color: Color.fromARGB(255, 80, 76, 76),
+                            color: Color.fromARGB(255, 132, 125, 125),
                           ),
                         ),
                       ],

@@ -1,15 +1,18 @@
+// ignore_for_file: unnecessary_new
+
 import 'package:flutter/material.dart';
+import 'package:shop/models/auth.dart';
 import 'package:shop/models/cart.dart';
+import 'package:shop/models/oder.dart';
 import 'package:shop/providers/order_list.dart';
 import 'package:shop/providers/product_list.dart';
 import 'package:shop/utils/routes.dart';
-import 'package:shop/views/auth_page.dart';
+import 'package:shop/views/auth_or_home.dart';
 import 'package:shop/views/cart_page.dart';
 import 'package:shop/views/orders_page.dart';
 import 'package:shop/views/product_detail_page.dart';
 import 'package:shop/views/product_form_page.dart';
 import 'package:shop/views/product_manage.dart';
-import 'package:shop/views/products_page.dart';
 import 'package:provider/provider.dart';
 // import 'package:system_theme/system_theme.dart';
 
@@ -26,13 +29,19 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ProductList(),
+          create: (_) => Auth(),
         ),
+        ChangeNotifierProxyProvider<Auth, ProductList>(
+            create: (_) => ProductList('', []),
+            update: (_, auth, product) {
+              return ProductList(auth.idToken ?? '', product?.products ?? []);
+            }),
+        ChangeNotifierProxyProvider<Auth, OrderList>(
+            create: (_) => new OrderList('', []),
+            update: (_, auth, order) =>
+                OrderList(auth.idToken ?? '', order?.orderList ?? [])),
         ChangeNotifierProvider(
           create: (_) => Cart(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => new OrderList(),
         ),
       ],
       child: MaterialApp(
@@ -51,8 +60,7 @@ class MyApp extends StatelessWidget {
         ),
         // home: const ProductsPage(),
         routes: {
-          Routes.AUTH: (context) => const AuthPage(),
-          Routes.HOME: (context) => const ProductsPage(),
+          Routes.AUTH_OR_HOME: (context) => const AuthOrHomePage(),
           Routes.PRODUCT_DETAIL: (context) => const ProductDetailPage(),
           Routes.CART: (context) => const CartPage(),
           Routes.ORDERS: (context) => const OrdersPage(),
