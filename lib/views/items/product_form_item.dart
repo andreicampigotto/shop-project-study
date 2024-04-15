@@ -75,7 +75,7 @@ class ProductItem extends StatelessWidget {
                         await Provider.of<ProductList>(
                           context,
                           listen: false,
-                        ).deleteProduct(product);
+                        ).removeProduct(product);
                       } on HttpException catch (error) {
                         message.showSnackBar(
                           SnackBar(

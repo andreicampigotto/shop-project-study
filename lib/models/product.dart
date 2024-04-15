@@ -7,8 +7,8 @@ import 'package:shop/utils/constats.dart';
 class Product with ChangeNotifier {
   String? id, description, imageUrl;
   double price;
-  bool isFavorite;
   String name;
+  bool isFavorite;
 
   Product({
     this.id,
@@ -24,12 +24,13 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleFavorite(String token) async {
+  Future<void> toggleFavorite(String token, String uId) async {
     try {
       _toggleFavorite();
-      final response = await http.patch(
-        Uri.parse('${Constants.productBaseUrl}/$id.json?auth=$token'),
-        body: jsonEncode({'isFavourite': !isFavorite}),
+
+      final response = await http.put(
+        Uri.parse('${Constants.userFavoriteUrl}/$uId/$id.json?auth=$token'),
+        body: jsonEncode(isFavorite),
       );
 
       if (response.statusCode >= 400) {

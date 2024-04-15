@@ -2,11 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shop/exceptions/auth_exception.dart';
+import 'package:shop/utils/constats.dart';
 
 class Auth with ChangeNotifier {
   String? _idToken;
   String? _email;
-  String? _uid;
+  String? _userId;
   DateTime? _expiresIn;
 
   bool get isAuth {
@@ -17,12 +18,12 @@ class Auth with ChangeNotifier {
 
   String? get idToken => isAuth ? _idToken : null;
   String? get email => isAuth ? _email : null;
-  String? get uid => isAuth ? _uid : null;
+  String? get userId => isAuth ? _userId : null;
 
   Future<void> _authenticate(
       String email, String password, String urlMethod) async {
     final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$urlMethod?key=AIzaSyCEGVLgbMSckKrdux1CoazdbG_bChcuTAE';
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlMethod?key=${Constants.webApiKey}';
 
     final response = await http.post(
       Uri.parse(url),
@@ -40,16 +41,14 @@ class Auth with ChangeNotifier {
     } else {
       _idToken = body['idToken'];
       _email = body['email'];
-      _uid = body['localId'];
+      _userId = body['localId'];
       _expiresIn =
           DateTime.now().add(Duration(seconds: int.parse(body['expiresIn'])));
       notifyListeners();
     }
-
-    print(body);
   }
 
-  Future<void> singUp(String email, String password) async {
+  Future<void> signUp(String email, String password) async {
     return _authenticate(email, password, 'signUp');
   }
 

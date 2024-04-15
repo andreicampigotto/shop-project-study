@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/models/auth.dart';
 import 'package:shop/models/cart.dart';
-import 'package:shop/models/oder.dart';
 import 'package:shop/providers/order_list.dart';
 import 'package:shop/providers/product_list.dart';
 import 'package:shop/utils/routes.dart';
@@ -32,14 +31,15 @@ class MyApp extends StatelessWidget {
           create: (_) => Auth(),
         ),
         ChangeNotifierProxyProvider<Auth, ProductList>(
-            create: (_) => ProductList('', []),
+            create: (_) => ProductList(),
             update: (_, auth, product) {
-              return ProductList(auth.idToken ?? '', product?.products ?? []);
+              return ProductList(auth.idToken ?? '', auth.userId ?? '',
+                  product?.products ?? []);
             }),
         ChangeNotifierProxyProvider<Auth, OrderList>(
-            create: (_) => new OrderList('', []),
-            update: (_, auth, order) =>
-                OrderList(auth.idToken ?? '', order?.orderList ?? [])),
+            create: (_) => new OrderList(),
+            update: (_, auth, order) => OrderList(
+                auth.idToken ?? '', order?.orderList ?? [], auth.userId ?? '')),
         ChangeNotifierProvider(
           create: (_) => Cart(),
         ),

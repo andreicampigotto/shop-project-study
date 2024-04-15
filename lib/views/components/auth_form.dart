@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shop/exceptions/auth_exception.dart';
 import 'package:shop/models/auth.dart';
 
-enum AuthMode { singUp, login }
+enum AuthMode { signUp, login }
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -26,13 +26,13 @@ class _AuthFormState extends State<AuthForm> {
     'password': '',
   };
 
-  bool _isSingIn() => _authMode == AuthMode.login;
-  bool _isSingUp() => _authMode == AuthMode.singUp;
+  bool _isSignIn() => _authMode == AuthMode.login;
+  bool _isSignUp() => _authMode == AuthMode.signUp;
 
   void _switchAuthMode() {
     setState(() {
-      if (_isSingIn()) {
-        _authMode = AuthMode.singUp;
+      if (_isSignIn()) {
+        _authMode = AuthMode.signUp;
       } else {
         _authMode = AuthMode.login;
       }
@@ -66,13 +66,13 @@ class _AuthFormState extends State<AuthForm> {
     Auth auth = Provider.of(context, listen: false);
 
     try {
-      if (_isSingIn()) {
+      if (_isSignIn()) {
         await auth.login(
           _authData['email']!,
           _authData['password']!,
         );
       } else {
-        await auth.singUp(
+        await auth.signUp(
           _authData['email']!,
           _authData['password']!,
         );
@@ -130,13 +130,13 @@ class _AuthFormState extends State<AuthForm> {
                       }
                       return null;
                     }),
-                if (_isSingUp())
+                if (_isSignUp())
                   TextFormField(
                     decoration:
                         const InputDecoration(labelText: 'Confirm password'),
                     keyboardType: TextInputType.emailAddress,
                     obscureText: true,
-                    validator: _isSingIn()
+                    validator: _isSignIn()
                         ? null
                         : (_password) {
                             final password = _password ?? '';
@@ -147,7 +147,7 @@ class _AuthFormState extends State<AuthForm> {
                             return null;
                           },
                   ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
                 if (_isLoading)
                   ElevatedButton(
                       onPressed: () {},
@@ -163,7 +163,7 @@ class _AuthFormState extends State<AuthForm> {
                           horizontal: 32, vertical: 8),
                     ),
                     child: Text(
-                      _authMode == AuthMode.login ? 'Sing-In' : 'Sing-up',
+                      _authMode == AuthMode.login ? 'Sign-In' : 'Sign-up',
                       style: const TextStyle(fontSize: 24),
                     ),
                   ),
@@ -171,13 +171,11 @@ class _AuthFormState extends State<AuthForm> {
                 TextButton(
                   onPressed: _switchAuthMode,
                   child: Text(
-                    _isSingIn() ? 'Sing up' : 'Sing in',
+                    _isSignIn() ? 'Sign up' : 'Sign in',
                     style: const TextStyle(fontSize: 24),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
-                )
+                const SizedBox(height: 8)
               ],
             )),
       ),

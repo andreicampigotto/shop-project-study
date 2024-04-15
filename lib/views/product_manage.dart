@@ -40,7 +40,7 @@ class ProductManage extends StatelessWidget {
         onRefresh: () => _refreshProducts(context),
         child: ListView.builder(
           padding: const EdgeInsets.only(top: 7),
-          itemCount: products.producstCount,
+          itemCount: products.productsCount,
           itemBuilder: (ctx, i) => Column(
             children: [
               ProductItem(
