@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/product_list.dart';
-import 'package:shop/utils/routes.dart';
 import 'package:shop/views/items/product_form_item.dart';
 
 class ProductManage extends StatelessWidget {

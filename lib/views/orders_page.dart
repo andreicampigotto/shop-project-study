@@ -14,9 +14,7 @@ class OrdersPage extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.error != null) {
-          return const Center(
-            child: Text('Something is wrong'),
-          );
+          return const Center(child: Text('Something is wrong'));
         } else {
           return Consumer<OrderList>(
             builder: (context, orders, child) => ListView.builder(
