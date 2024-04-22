@@ -91,8 +91,9 @@ class Auth with ChangeNotifier {
     _email = null;
     _userId = null;
     _expiresIn = null;
+
     _clearAutoLogoutTimer();
-    notifyListeners();
+    Store.remove('userData').then((_) => notifyListeners());
   }
 
   void _clearAutoLogoutTimer() {
