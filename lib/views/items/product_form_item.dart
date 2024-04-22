@@ -34,9 +34,9 @@ class ProductItem extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
-                  color: Theme.of(context).primaryColor,
+                  // color: Theme.of(context).primaryColor
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamed(

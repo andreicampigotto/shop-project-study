@@ -5,6 +5,7 @@ import 'package:shop/models/cart.dart';
 import 'package:shop/utils/routes.dart';
 import 'package:shop/views/cart_page.dart';
 import 'package:shop/views/orders_page.dart';
+import 'package:shop/views/product_manage.dart';
 import 'package:shop/views/products_page.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -34,6 +35,10 @@ class _TabsScreen extends State<TabsScreen> {
         'title': 'Orders',
         'screen': const OrdersPage(),
       },
+      {
+        'title': 'Settings',
+        'screen': const ProductManage(),
+      },
     ];
   }
 
@@ -46,20 +51,35 @@ class _TabsScreen extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          _screens![_currentPageIndex]['title'] as String,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.exit_to_app_outlined),
-            onPressed: () {
-              Provider.of<Auth>(context, listen: false).logout();
-              Navigator.of(context).pushReplacementNamed(Routes.AUTH_OR_HOME);
-            },
-          ),
-        ],
-      ),
+      appBar: _currentPageIndex == 3
+          ? AppBar(
+              title: Text(
+                _screens![_currentPageIndex]['title'] as String,
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Routes.PRODUCT_FORM);
+                  },
+                ),
+              ],
+            )
+          : AppBar(
+              title: Text(
+                _screens![_currentPageIndex]['title'] as String,
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.exit_to_app_outlined),
+                  onPressed: () {
+                    Provider.of<Auth>(context, listen: false).logout();
+                    Navigator.of(context)
+                        .pushReplacementNamed(Routes.AUTH_OR_HOME);
+                  },
+                ),
+              ],
+            ),
       body: _screens![_currentPageIndex]['screen'] as Widget,
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _selectedScreen,
@@ -85,6 +105,11 @@ class _TabsScreen extends State<TabsScreen> {
             selectedIcon: Icon(Icons.payment),
             icon: Icon(Icons.payment_outlined),
             label: 'Orders',
+          ),
+          const NavigationDestination(
+            selectedIcon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_outlined),
+            label: 'Settings',
           ),
         ],
       ),
