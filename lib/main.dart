@@ -45,17 +45,14 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Shop',
+        title: 'My Shop',
         theme: ThemeData(
           brightness: Brightness.light,
           colorScheme: const ColorScheme.light(),
-          //.copyWith(primary: const Color.fromARGB(255, 159, 125, 219)),
-          primaryColor: const Color.fromARGB(255, 151, 90, 255),
           useMaterial3: true,
         ),
         darkTheme: ThemeData(
           colorScheme: const ColorScheme.dark(),
-          primaryColor: const Color.fromARGB(255, 159, 125, 219),
           useMaterial3: true,
         ),
         // home: const ProductsPage(),

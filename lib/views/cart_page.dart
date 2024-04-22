@@ -12,48 +12,41 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Cart cart = Provider.of(context);
     final items = cart.items.values.toList();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cart"),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: cart.items.length,
-                itemBuilder: (context, i) => CartItem(
-                  cartItemList: items[i],
-                ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: cart.items.length,
+              itemBuilder: (context, i) => CartItem(
+                cartItemList: items[i],
               ),
             ),
-            Card(
-              margin: const EdgeInsets.fromLTRB(2, 2, 2, 37),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 7, 7, 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Total: ",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
+          ),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 7, 7, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Total: ",
+                    style: TextStyle(
+                      fontSize: 17,
                     ),
-                    Text(
-                      "\$${cart.totalAmount.toStringAsFixed(2)}",
-                      style: const TextStyle(fontSize: 17),
-                    ),
-                    const Spacer(),
-                    CheckoutButton(cart: cart),
-                  ],
-                ),
+                  ),
+                  Text(
+                    "\$${cart.totalAmount.toStringAsFixed(2)}",
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                  const Spacer(),
+                  CheckoutButton(cart: cart),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
