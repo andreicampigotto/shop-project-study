@@ -121,6 +121,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
               margin: const EdgeInsets.all(8),
               height: 550,
               child: Card(
+                margin: const EdgeInsets.only(top: 16),
                 elevation: 8,
                 semanticContainer: true,
                 color: Theme.of(context).scaffoldBackgroundColor,

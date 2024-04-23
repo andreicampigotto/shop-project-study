@@ -17,17 +17,14 @@ class AuthPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.08,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               const Text(
                 'Shop',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontFamily: 'Anton',
-                ),
+                style: TextStyle(fontSize: 40, fontFamily: 'Anton'),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.16,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),

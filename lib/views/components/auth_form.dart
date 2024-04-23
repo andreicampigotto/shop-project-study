@@ -1,6 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/exceptions/auth_exception.dart';
 import 'package:shop/models/auth.dart';
@@ -14,10 +15,12 @@ class AuthForm extends StatefulWidget {
   State<AuthForm> createState() => _AuthFormState();
 }
 
-class _AuthFormState extends State<AuthForm> {
+class _AuthFormState extends State<AuthForm>
+    with SingleTickerProviderStateMixin {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+// final deviceSize = MediaQuery.of(context).size;
   bool _isLoading = false;
   AuthMode _authMode = AuthMode.login;
 
@@ -26,15 +29,44 @@ class _AuthFormState extends State<AuthForm> {
     'password': '',
   };
 
+  AnimationController? _animationController;
+  Animation<Size>? _heightAnimation;
+
   bool _isSignIn() => _authMode == AuthMode.login;
   bool _isSignUp() => _authMode == AuthMode.signUp;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
+
+    _heightAnimation = Tween(
+      begin: const Size(double.infinity, 350),
+      end: const Size(double.infinity, 500),
+    ).animate(CurvedAnimation(
+      parent: _animationController!,
+      curve: Curves.linear,
+    ));
+
+    _heightAnimation?.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController?.dispose();
+  }
 
   void _switchAuthMode() {
     setState(() {
       if (_isSignIn()) {
         _authMode = AuthMode.signUp;
+        _animationController?.forward();
       } else {
         _authMode = AuthMode.login;
+        _animationController?.reverse();
       }
     });
   }
@@ -95,7 +127,9 @@ class _AuthFormState extends State<AuthForm> {
       child: Container(
         margin: const EdgeInsets.only(top: 16),
         padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-        height: deviceSize.height * 0.45,
+        // height:_isSignIn() ? deviceSize.height * 0.35 : deviceSize.height * 0.45,
+        height: _heightAnimation?.value.height ??
+            (_isSignIn() ? deviceSize.height * 0.35 : deviceSize.height * 0.45),
         width: deviceSize.width * 0.88,
         child: Form(
             key: _formKey,
