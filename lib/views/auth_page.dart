@@ -20,7 +20,7 @@ class AuthPage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
               const Text(
-                'Shop',
+                'My Shop',
                 style: TextStyle(fontSize: 40, fontFamily: 'Anton'),
               ),
               SizedBox(
