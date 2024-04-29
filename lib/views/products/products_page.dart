@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/product_list.dart';
-import 'package:shop/views/components/product_grid.dart';
+import 'package:shop/views/products/product_grid.dart';
 
 // import 'package:shop/data/dummy_data.dart';
 enum FilterOptions {
@@ -17,7 +17,7 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
-  bool _showFavoriteOnly = false;
+  final bool _showFavoriteOnly = false;
   bool _isLoading = true;
 
   @override

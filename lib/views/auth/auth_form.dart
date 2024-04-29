@@ -30,9 +30,10 @@ class _AuthFormState extends State<AuthForm>
 
   AnimationController? _animationController;
   Animation<double>? _opacityAnimation;
+  Animation<Offset>? _slideAnimation;
 
   bool _isSignIn() => _authMode == AuthMode.login;
-  bool _isSignUp() => _authMode == AuthMode.signUp;
+  // bool _isSignUp() => _authMode == AuthMode.signUp;
 
   @override
   void initState() {
@@ -44,6 +45,13 @@ class _AuthFormState extends State<AuthForm>
     _opacityAnimation = Tween(
       begin: 0.0,
       end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _animationController!,
+      curve: Curves.linear,
+    ));
+    _slideAnimation = Tween(
+      begin: const Offset(0, -1.5),
+      end: const Offset(0, 0),
     ).animate(CurvedAnimation(
       parent: _animationController!,
       curve: Curves.linear,
@@ -174,21 +182,24 @@ class _AuthFormState extends State<AuthForm>
                 curve: Curves.linear,
                 child: FadeTransition(
                   opacity: _opacityAnimation!,
-                  child: TextFormField(
-                    decoration:
-                        const InputDecoration(labelText: 'Confirm password'),
-                    keyboardType: TextInputType.emailAddress,
-                    obscureText: true,
-                    validator: _isSignIn()
-                        ? null
-                        : (_password) {
-                            final password = _password ?? '';
-                            if (password != _passwordController.text ||
-                                password.isEmpty) {
-                              return "Passwords don't match";
-                            }
-                            return null;
-                          },
+                  child: SlideTransition(
+                    position: _slideAnimation!,
+                    child: TextFormField(
+                      decoration:
+                          const InputDecoration(labelText: 'Confirm password'),
+                      keyboardType: TextInputType.emailAddress,
+                      obscureText: true,
+                      validator: _isSignIn()
+                          ? null
+                          : (_password) {
+                              final password = _password ?? '';
+                              if (password != _passwordController.text ||
+                                  password.isEmpty) {
+                                return "Passwords don't match";
+                              }
+                              return null;
+                            },
+                    ),
                   ),
                 ),
               ),

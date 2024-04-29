@@ -7,11 +7,11 @@ import 'package:shop/providers/order_list.dart';
 import 'package:shop/providers/product_list.dart';
 import 'package:shop/utils/routes.dart';
 import 'package:shop/views/auth_or_home.dart';
-import 'package:shop/views/cart_page.dart';
-import 'package:shop/views/orders_page.dart';
-import 'package:shop/views/product_detail_page.dart';
-import 'package:shop/views/product_form_page.dart';
-import 'package:shop/views/product_manage.dart';
+import 'package:shop/views/cart/cart_page.dart';
+import 'package:shop/views/orders/orders_page.dart';
+import 'package:shop/views/products/product_detail_page.dart';
+import 'package:shop/views/manage/product_form_page.dart';
+import 'package:shop/views/manage/product_manage.dart';
 import 'package:provider/provider.dart';
 // import 'package:system_theme/system_theme.dart';
 

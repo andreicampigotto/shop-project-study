@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/auth.dart';
-import 'package:shop/views/auth_page.dart';
-import 'package:shop/views/components/tab_screen.dart';
+import 'package:shop/views/auth/auth_page.dart';
+import 'package:shop/views/tab_screen.dart';
 // import 'package:shop/views/products_page.dart';
 
 class AuthOrHomePage extends StatelessWidget {

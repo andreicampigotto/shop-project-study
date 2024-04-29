@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:shop/models/auth.dart';
 import 'package:shop/models/cart.dart';
 import 'package:shop/utils/routes.dart';
-import 'package:shop/views/cart_page.dart';
-import 'package:shop/views/orders_page.dart';
-import 'package:shop/views/product_manage.dart';
-import 'package:shop/views/products_page.dart';
+import 'package:shop/views/cart/cart_page.dart';
+import 'package:shop/views/orders/orders_page.dart';
+import 'package:shop/views/manage/product_manage.dart';
+import 'package:shop/views/products/products_page.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});

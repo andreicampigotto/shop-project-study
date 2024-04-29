@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/order_list.dart';
-import 'package:shop/views/components/oder_card.dart';
+import 'package:shop/views/orders/oder_card.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});

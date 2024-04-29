@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/views/components/auth_form.dart';
+import 'package:shop/views/auth/auth_form.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -24,12 +24,16 @@ class AuthPage extends StatelessWidget {
                 style: TextStyle(fontSize: 40, fontFamily: 'Anton'),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.08,
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                width: double.infinity,
-                child: const AuthForm(),
+              Center(
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    width: double.infinity,
+                    child: const AuthForm(),
+                  ),
+                ),
               ),
             ],
           ),
