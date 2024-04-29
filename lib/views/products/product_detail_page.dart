@@ -9,45 +9,47 @@ class ProductDetailPage extends StatelessWidget {
     final Product product =
         ModalRoute.of(context)?.settings.arguments as Product;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          product.name,
-        ),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.white54,
-              ),
-              height: 300,
-              width: double.infinity,
-              child: Hero(
-                tag: product.id,
-                child: Image.network(
-                  product.imageUrl!,
-                  fit: BoxFit.cover,
-                ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 300,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(product.name),
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Hero(
+                    tag: product.id,
+                    child: Image.network(
+                      product.imageUrl!,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  const DecoratedBox(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                    begin: Alignment(0, 0.8),
+                    end: Alignment(0, 0.0),
+                    colors: [
+                      Color.fromRGBO(0, 0, 0, 0.6),
+                      Color.fromRGBO(0, 0, 0, 0),
+                    ],
+                  )))
+                ],
               ),
             ),
-            Card(
-              borderOnForeground: true,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.zero,
-                  side: BorderSide(
-                    color: Colors.grey,
-                  )),
-              elevation: 0,
-              margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 0),
-              color: const Color.fromARGB(255, 255, 255, 82),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(17, 10, 0, 10),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Container(
+                padding: const EdgeInsets.only(top: 16, bottom: 16, right: 8),
+                color: const Color.fromRGBO(255, 95, 31, 1),
                 child: Row(
+                  textDirection: TextDirection.rtl,
                   children: [
                     Text(
+                      textAlign: TextAlign.end,
                       '\$ ${product.price}',
                       style: const TextStyle(
                         color: Color.fromARGB(211, 61, 28, 28),
@@ -58,22 +60,22 @@ class ProductDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 5),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 17),
-              width: double.infinity,
-              child: Text(
-                product.description!,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400,
+              const SizedBox(height: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                width: double.infinity,
+                child: Text(
+                  product.description!,
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
+              )
+            ]),
+          )
+        ],
       ),
     );
   }

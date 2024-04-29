@@ -42,7 +42,7 @@ class _ProductsPageState extends State<ProductsPage> {
         ? const Center(child: CircularProgressIndicator())
         : Container(
             margin: const EdgeInsets.only(top: 8),
-            child: ProductGrid(
+            child: const ProductGrid(
                 // _showFavoriteOnly,
                 ));
   }
