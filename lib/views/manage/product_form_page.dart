@@ -37,7 +37,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
       final arg = ModalRoute.of(context)?.settings.arguments;
       if (arg != null) {
         final product = arg as Product;
-        _formData['id'] = product.id!;
+        _formData['id'] = product.id;
         _formData['name'] = product.name;
         _formData['price'] = product.price;
         _formData['description'] = product.description!;

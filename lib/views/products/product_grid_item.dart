@@ -46,7 +46,7 @@ class ProductGridItem extends StatelessWidget {
                   action: SnackBarAction(
                     label: 'Undo',
                     onPressed: () {
-                      cart.removeSingleItem(product.id!);
+                      cart.removeSingleItem(product.id);
                     },
                   ),
                 ),
@@ -59,15 +59,15 @@ class ProductGridItem extends StatelessWidget {
             ),
           ),
         ),
-        child: GestureDetector(
-          child: Image.network(
-            product.imageUrl!,
-            fit: BoxFit.cover,
+        child: Hero(
+          tag: product.id,
+          child: GestureDetector(
+            child: Image.network(product.imageUrl!, fit: BoxFit.cover),
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(Routes.PRODUCT_DETAIL, arguments: product);
+            },
           ),
-          onTap: () {
-            Navigator.of(context)
-                .pushNamed(Routes.PRODUCT_DETAIL, arguments: product);
-          },
         ),
       ),
     );

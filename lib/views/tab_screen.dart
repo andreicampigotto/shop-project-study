@@ -6,7 +6,7 @@ import 'package:shop/utils/routes.dart';
 import 'package:shop/views/cart/cart_page.dart';
 import 'package:shop/views/orders/orders_page.dart';
 import 'package:shop/views/manage/product_manage.dart';
-import 'package:shop/views/products/products_page.dart';
+import 'package:shop/views/products/product_grid.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -25,7 +25,7 @@ class _TabsScreen extends State<TabsScreen> {
     _screens = [
       {
         'title': 'Shop',
-        'screen': const ProductsPage(),
+        'screen': const ProductGrid(),
       },
       {
         'title': 'Cart',

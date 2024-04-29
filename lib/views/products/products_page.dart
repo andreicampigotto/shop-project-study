@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/product_list.dart';
@@ -41,8 +43,7 @@ class _ProductsPageState extends State<ProductsPage> {
         : Container(
             margin: const EdgeInsets.only(top: 8),
             child: ProductGrid(
-              _showFavoriteOnly,
-            ),
-          );
+                // _showFavoriteOnly,
+                ));
   }
 }

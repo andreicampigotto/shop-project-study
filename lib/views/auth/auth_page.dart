@@ -12,30 +12,30 @@ class AuthPage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(color: Theme.of(context).primaryColor),
           ),
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              const Text(
-                'My Shop',
-                style: TextStyle(fontSize: 40, fontFamily: 'Anton'),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.08,
-              ),
-              Center(
-                child: SingleChildScrollView(
-                  child: Container(
+          Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.055,
+                  ),
+                  const Text(
+                    'My Shop',
+                    style: TextStyle(fontSize: 40, fontFamily: 'Anton'),
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.088,
+                  ),
+                  Container(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     width: double.infinity,
                     child: const AuthForm(),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),

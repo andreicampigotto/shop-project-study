@@ -25,9 +25,12 @@ class ProductDetailPage extends StatelessWidget {
               ),
               height: 300,
               width: double.infinity,
-              child: Image.network(
-                product.imageUrl!,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: product.id,
+                child: Image.network(
+                  product.imageUrl!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Card(
