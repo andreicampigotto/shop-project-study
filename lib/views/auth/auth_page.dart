@@ -10,8 +10,8 @@ class AuthPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-          ),
+              // decoration: BoxDecoration(color: MaterialColor.ter),
+              ),
           Center(
             child: SingleChildScrollView(
               child: Column(

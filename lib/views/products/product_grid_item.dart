@@ -42,7 +42,7 @@ class ProductGridItem extends StatelessWidget {
                   ),
                   duration: const Duration(seconds: 2),
                   elevation: 17,
-                  backgroundColor: Theme.of(context).hintColor,
+                  // backgroundColor: Theme.of(context).,
                   action: SnackBarAction(
                     label: 'Undo',
                     onPressed: () {

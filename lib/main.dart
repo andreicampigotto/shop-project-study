@@ -14,7 +14,6 @@ import 'package:shop/views/products/product_detail_page.dart';
 import 'package:shop/views/manage/product_form_page.dart';
 import 'package:shop/views/manage/product_manage.dart';
 import 'package:provider/provider.dart';
-// import 'package:system_theme/system_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,14 +47,16 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'My Shop',
         theme: ThemeData(
-            brightness: Brightness.light,
-            colorScheme: const ColorScheme.light(),
-            useMaterial3: true,
-            pageTransitionsTheme: PageTransitionsTheme(builders: {
-              TargetPlatform.android: CustomPageTransitionsBuilder(),
-              TargetPlatform.iOS: CustomPageTransitionsBuilder(),
-            })),
+          useMaterial3: true,
+          brightness: Brightness.light,
+          colorScheme: const ColorScheme.light(),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: CustomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CustomPageTransitionsBuilder(),
+          }),
+        ),
         darkTheme: ThemeData(
+            brightness: Brightness.dark,
             colorScheme: const ColorScheme.dark(),
             useMaterial3: true,
             pageTransitionsTheme: PageTransitionsTheme(builders: {
