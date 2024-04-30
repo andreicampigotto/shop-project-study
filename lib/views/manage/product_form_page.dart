@@ -111,7 +111,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Form'),
-        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: _isLoading
           ? const Center(
